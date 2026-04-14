@@ -1,0 +1,225 @@
+@import "tailwindcss";
+
+:root {
+  --background: #09090b;
+  --foreground: #fafafa;
+  --card: #18181b;
+  --card-foreground: #fafafa;
+  --primary: #6366f1;
+  --primary-foreground: #ffffff;
+  --secondary: #27272a;
+  --secondary-foreground: #fafafa;
+  --muted: #27272a;
+  --muted-foreground: #a1a1aa;
+  --accent: #3f3f46;
+  --accent-foreground: #fafafa;
+  --border: #27272a;
+  --input: #27272a;
+  --ring: #6366f1;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #f472b6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.glow {
+  box-shadow: 0 0 80px -20px rgba(99, 102, 241, 0.4);
+}
+
+.glow-sm {
+  box-shadow: 0 0 40px -10px rgba(99, 102, 241, 0.3);
+}
+
+.gradient-bg {
+  background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 102, 241, 0.15), transparent);
+}
+
+.gradient-bg-2 {
+  background: radial-gradient(ellipse 60% 40% at 70% 50%, rgba(139, 92, 246, 0.1), transparent);
+}
+
+/* Button Components */
+.btn {
+  @apply inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 rounded-xl;
+}
+
+.btn-primary {
+  @apply bg-white text-zinc-900 hover:bg-zinc-100;
+}
+
+.btn-gradient {
+  @apply bg-gradient-to-r from-indigo-600 to-violet-600 text-white hover:from-indigo-500 hover:to-violet-500 shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40;
+}
+
+.btn-secondary {
+  @apply border border-zinc-700 text-zinc-300 hover:border-zinc-600 hover:bg-zinc-800/50;
+}
+
+.btn-ghost {
+  @apply text-zinc-400 hover:text-white hover:bg-zinc-800/50;
+}
+
+/* Card Components */
+.card {
+  @apply bg-zinc-900/50 border border-zinc-800/50 rounded-2xl;
+}
+
+.card-hover {
+  @apply hover:border-zinc-700 hover:bg-zinc-900/70 transition-all duration-200;
+}
+
+/* Input Components */
+.input {
+  @apply w-full h-10 px-4 rounded-xl bg-zinc-900/50 border border-zinc-800 text-sm text-zinc-300 placeholder:text-zinc-600 focus:outline-none focus:border-zinc-700 focus:ring-1 focus:ring-zinc-700 transition-all;
+}
+
+.input-search {
+  @apply pl-10;
+}
+
+/* Badge Components */
+.badge {
+  @apply px-2 py-1 rounded-md text-[10px] font-medium bg-black/40 backdrop-blur-sm text-white/80 border border-white/10;
+}
+
+/* Selection State */
+.selected {
+  @apply border-indigo-500/50 bg-indigo-500/10 shadow-lg shadow-indigo-500/10;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #52525b;
+}
+
+/* Banner Entrance Animations */
+@keyframes bannerEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes bannerGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px -5px rgba(99, 102, 241, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px -5px rgba(99, 102, 241, 0.5);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.animate-banner-entrance {
+  animation: bannerEntrance 0.5s ease-out forwards;
+}
+
+.animate-banner-glow {
+  animation: bannerGlow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
